@@ -66,11 +66,7 @@ Installed on the Windows system to capture:
 ---
 
 ## 🔄 Data Flow
-Windows (Attacker + Target)
-↓
-Splunk Universal Forwarder
-↓
-Splunk SIEM (Ubuntu Server)
+Windows (Attacker + Target) → Splunk Universal Forwarder → Splunk SIEM (Ubuntu Server)
 
 ---
 
