@@ -1,4 +1,4 @@
-# Mini SOC Lab using Splunk SIEM
+# SOC Lab using Splunk SIEM
 
 ## 🔍 Overview
 
