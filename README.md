@@ -151,15 +151,6 @@ mini-soc-splunk-lab/
 
 ---
 
-## 🚀 Future Improvements
-
-- Add additional attack scenarios (persistence, lateral movement)
-- Integrate threat intelligence feeds
-- Implement automated response mechanisms
-- Enhance dashboards with advanced visualizations
-
----
-
 ## 📌 Conclusion
 
 This project demonstrates the ability to design and implement a functional SOC lab, simulate realistic attack scenarios, and build effective detection and monitoring mechanisms using Splunk.
