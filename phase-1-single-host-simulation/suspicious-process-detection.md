@@ -74,7 +74,7 @@ These indicators are commonly associated with malicious activity, as attackers o
 
 An alert was configured in Splunk using the above query with the following settings:
 
-- Title: Suspicious Process Execution Detection
+- Title: Suspicious Process Execution
 - Alert Type: Scheduled [Run on Cron Schedule]
 - Schedule: Every 5 minutes [*/5 * * * *]
 - Time Range: All time
