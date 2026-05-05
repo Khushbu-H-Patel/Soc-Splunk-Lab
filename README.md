@@ -55,7 +55,7 @@ Kali Linux → Windows Target → Splunk Universal Forwarder → Splunk SIEM
 
 ## ⚔️ Attack Scenarios & Detection
 
-### 🔹 1. Brute Force Attack Detection
+### 🔹 1. Brute Force Attack Detection (Phase 1)
 
 - Simulated multiple failed login attempts
 - Data Source: Windows Security Logs (EventCode 4625)
@@ -65,7 +65,7 @@ Kali Linux → Windows Target → Splunk Universal Forwarder → Splunk SIEM
 
 ---
 
-### 🔹 2. Suspicious Process Execution
+### 🔹 2. Suspicious Process Execution (Phase 1)
 
 - Simulated attacker-like commands (PowerShell, system enumeration)
 - Data Source: Sysmon EventCode 1
