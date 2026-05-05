@@ -75,6 +75,7 @@ An alert was configured in Splunk using the above query with the following setti
 - Expires: 24 hour(s)
 - Trigger Condition: Number of results > 0
 
+![Brute force detection alets](Alerts/brute-force-detection-alerts.png)
 ---
 
 ## 📊 Dashboard Visualization
