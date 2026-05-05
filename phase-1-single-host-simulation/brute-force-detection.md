@@ -75,7 +75,7 @@ An alert was configured in Splunk using the above query with the following setti
 - Expires: 24 hour(s)
 - Trigger Condition: Number of results > 0
 
-![Brute force detection alets](Alerts/brute-force-detection-alerts.png)
+![Brute force detection alerts](Alerts/brute-force-detection-alerts.png)
 ---
 
 ## 📊 Dashboard Visualization
@@ -89,6 +89,7 @@ A dashboard panel was created to visualize:
 - Failed login table
 
 This helps in quickly identifying abnormal login patterns.
+
 ![Brute force detection dashboard](Dashboard/brute-force-monitoring-dashboard.png)
 
 ---
