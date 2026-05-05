@@ -90,14 +90,14 @@ The setup was verified using the following checks:
 
 - Confirm forwarder connection:
   splunk list forward-server
-  ![Splunk list forward-server result](/Screenshots/splunk-list-forward-server.png)
+  ![Splunk list forward-server result](Screenshots/splunk-list-forward-server.png)
 
 - Verify Windows logs ingestion:
   index=windows_logs
-  ![splunk windows logs](/Screenshots/splunk-windows-logs.png)
+  ![splunk windows logs](Screenshots/splunk-windows-logs.png)
 
 - Verify Sysmon logs ingestion:
   index=sysmon_logs
-  ![splunk sysmon logs](/Screenshots/splunk-sysmon-logs.png)
+  ![splunk sysmon logs](Screenshots/splunk-sysmon-logs.png)
 
 Successful log ingestion confirms that the environment is ready for detection and monitoring.
