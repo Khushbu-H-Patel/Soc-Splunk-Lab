@@ -91,7 +91,7 @@ An alert was configured in Splunk using the above query with the following setti
 - Expires: 24 hour(s)
 - Trigger Condition: Number of results > 0
 
-![Port scan network recon detection alerts](Alerts/port-scan-network-recon-alerts.png)
+![Port scan network recon detection alerts](Alert/port-scan-network-recon-alerts.png)
 
 ---
 
