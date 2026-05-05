@@ -62,7 +62,7 @@ For architecture details, refer to:
 ## 📝 inputs.conf Configuration
 
 The following configuration was used on the Windows machine:
-
+```
 [WinEventLog://Security]
 disabled = false
 index = windows_logs
@@ -80,6 +80,7 @@ disabled = false
 index = sysmon_logs
 start_from = oldest
 current_only = 0
+```
 
 ---
 
@@ -89,14 +90,14 @@ The setup was verified using the following checks:
 
 - Confirm forwarder connection:
   splunk list forward-server
-  ![Splunk list forward-server result](splunk-list-forward-server.png)
+  ![Splunk list forward-server result](/Screenshots/splunk-list-forward-server.png)
 
 - Verify Windows logs ingestion:
   index=windows_logs
-  ![splunk windows logs](splunk-windows-logs.png)
+  ![splunk windows logs](/Screenshots/splunk-windows-logs.png)
 
 - Verify Sysmon logs ingestion:
   index=sysmon_logs
-  ![splunk sysmon logs](splunk-sysmon-logs.png)
+  ![splunk sysmon logs](/Screenshots/splunk-sysmon-logs.png)
 
 Successful log ingestion confirms that the environment is ready for detection and monitoring.
