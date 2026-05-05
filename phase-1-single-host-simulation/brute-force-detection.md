@@ -14,6 +14,7 @@ The brute force attack was simulated on the Windows machine by intentionally ent
 
 - Target account: Administrator
 - Multiple failed login attempts were generated within a short time window
+
 ![Brute force attack simulation](Screenshots/brute-force-attack-simulation.png)
 
 ---
