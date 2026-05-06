@@ -1,0 +1,5 @@
+index=windows_logs EventCode=4625
+| rex field=_raw "Account For Which Logon Failed:\s+Security ID:\s+\S+\s+Account Name:\s+(?<target_user>\w+)"
+| bucket _time span=5m
+| stats count by _time, target_user
+| where count >= 5

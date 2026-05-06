@@ -1,0 +1,7 @@
+index=windows_firewall_logs RECEIVE
+| rex field=_raw "(?<action>ALLOW|DROP)\s+(?<protocol>\w+)\s+(?<src_ip>\d+\.\d+\.\d+\.\d+)\s+(?<dst_ip>\d+\.\d+\.\d+\.\d+)\s+(?<src_port>\d+)\s+(?<dst_port>\d+)"
+| where isnotnull(src_ip)
+| where NOT dst_ip="224.0.0.252"
+| bucket _time span=5m
+| stats count dc(dst_port) as unique_ports by _time, src_ip, dst_ip
+| where unique_ports >= 10 OR count >= 20

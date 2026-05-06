@@ -1,0 +1,2 @@
+index=sysmon_logs EventCode=1 Image="*powershell.exe"
+(CommandLine="*-ExecutionPolicy Bypass*" OR CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*")
