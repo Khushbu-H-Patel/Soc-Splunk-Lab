@@ -74,18 +74,18 @@ Sysmon provided richer detection capability compared to relying solely on standa
 Sysmon installation and operation were verified using:
 
 - Windows Event Viewer
-![Windows event viewer](Screenshots/windows-event-viewer.png)
+  ![Windows event viewer](Screenshots/windows-event-viewer.png)
 
 - Sysmon service status:
   ```
   sc query Sysmon64
   ```
-![Sysmon installation](Screenshots/sysmon-installation-windows.png)
+  ![Sysmon installation](Screenshots/sysmon-installation-windows.png)
 
 - Splunk searches:
   ```
   index=sysmon_logs
   ```
-![Splunk sysmon logs](Screenshots/splunk-sysmon-logs.png)
+  ![Splunk sysmon logs](Screenshots/splunk-sysmon-logs.png)
 
 Successful ingestion of Sysmon logs into Splunk confirmed proper telemetry collection and forwarding.
