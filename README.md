@@ -1,38 +1,54 @@
 # SOC Lab using Splunk SIEM
 
-## 🔍 Overview
+## 🔍 Project Overview
 
-This project demonstrates the design and implementation of a **Security Operations Center (SOC) lab** using Splunk SIEM. The lab simulates real-world attack scenarios and showcases detection, alerting, and monitoring capabilities across multiple layers including authentication, endpoint, and network.
+This project demonstrates the design and implementation of a Security Operations Center (SOC) lab using Splunk SIEM. The lab simulates realistic cyber attack scenarios and showcases detection engineering, alerting, log analysis, and security monitoring across authentication, endpoint, and network layers.
 
-The project is implemented in two phases:
-
-- **Phase 1:** Single-host simulation (Windows acting as both attacker and target)
-- **Phase 2:** Multi-machine SOC simulation (Kali Linux as attacker, Windows as target)
+The project was developed in two phases to progressively build a more realistic SOC environment.
 
 ---
 
-## 🏗️ Architecture
+# 🏗️ Lab Architecture
 
-### Phase 1 — Single Host Simulation
+## Phase 1 — Single-Host SOC Simulation
 
-- Windows 10 (Attacker + Target)
-- Ubuntu Server (Splunk SIEM)
+- Windows 10 VM acting as both attacker and target
+- Ubuntu Server running Splunk Enterprise SIEM
 
-### Phase 2 — Realistic SOC Simulation
+This phase focused on:
+- Log ingestion
+- Detection engineering
+- Alert creation
+- Dashboard visualization
+- Endpoint and authentication monitoring
 
-- Kali Linux (Attacker)
-- Windows 10 (Target + Log Source)
-- Ubuntu Server (Splunk SIEM)
+---
 
-### Data Flow
+## Phase 2 — Multi-Machine SOC Simulation
+
+- Kali Linux VM acting as attacker
+- Windows 10 VM acting as target and log source
+- Ubuntu Server running Splunk Enterprise SIEM
+
+This phase introduced:
+- External attacker simulation
+- Network reconnaissance detection
+- Windows Firewall log monitoring
+- More realistic SOC visibility
+
+---
+
+## 🔄 Data Flow
+
+```text
 Kali Linux → Windows Target → Splunk Universal Forwarder → Splunk SIEM
-
+```
 
 ---
 
-## 🛠️ Tools & Technologies
+# 🛠️ Technologies Used
 
-- Splunk Enterprise (SIEM)
+- Splunk Enterprise
 - Splunk Universal Forwarder
 - Windows 10
 - Kali Linux
@@ -40,93 +56,129 @@ Kali Linux → Windows Target → Splunk Universal Forwarder → Splunk SIEM
 - Sysmon
 - Windows Firewall Logs
 - VMware Workstation
+- Nmap
+- PowerShell
 
 ---
 
-## 📊 Data Sources
+# 📊 Data Sources
 
-| Source | Purpose |
-|------|--------|
-| Windows Security Logs (EventCode 4625) | Brute force detection |
-| Sysmon (EventCode 1, 3) | Process and network activity |
-| Windows Firewall Logs | External attack visibility |
+| Data Source | Purpose |
+|---|---|
+| Windows Security Logs (EventCode 4625) | Failed login and brute force detection |
+| Sysmon Event ID 1 | Process creation monitoring |
+| Sysmon Event ID 3 | Outbound network connection monitoring |
+| Windows Firewall Logs | External attacker and port scan visibility |
 
 ---
 
-## ⚔️ Attack Scenarios & Detection
+# ⚔️ Attack Simulations & Detections
 
-### 🔹 1. Brute Force Attack Detection (Phase 1)
+## 🔹 1. Brute Force Attack Detection
 
-- Simulated multiple failed login attempts
-- Data Source: Windows Security Logs (EventCode 4625)
+### Scenario
+Simulated repeated failed login attempts against a Windows account.
 
-**Detection Logic:**
+### Data Source
+- Windows Security Logs
+- EventCode 4625
+
+### Detection Logic
 - Multiple failed logins within a defined time window
+- Threshold-based alerting
+
+### MITRE ATT&CK
+- T1110 — Brute Force
 
 ---
 
-### 🔹 2. Suspicious Process Execution (Phase 1)
+## 🔹 2. Suspicious Process Execution Detection
 
-- Simulated attacker-like commands (PowerShell, system enumeration)
-- Data Source: Sysmon EventCode 1
+### Scenario
+Simulated attacker-like process execution using PowerShell and reconnaissance commands.
 
-**Detection Logic:**
-- Suspicious command-line patterns
-- High-frequency process execution
+### Data Source
+- Sysmon Event ID 1
+
+### Detection Logic
+- PowerShell execution monitoring
+- Encoded command detection
+- Suspicious command-line arguments
+- Process execution spikes
+
+### MITRE ATT&CK
+- T1059.001 — PowerShell
+- T1033 — System Owner/User Discovery
 
 ---
 
-### 🔹 3. Outbound Network Activity (Phase 1)
+## 🔹 3. Suspicious Outbound Network Connection Detection
 
-- Simulated outbound connections from Windows
-- Data Source: Sysmon EventCode 3
+### Scenario
+Simulated suspicious outbound network connections initiated from Windows processes.
+
+### Data Source
+- Sysmon Event ID 3
+
+### Detection Logic
+- Outbound connections from suspicious processes
+- External destination monitoring
+- Connection spike detection
+
+### MITRE ATT&CK
+- T1071 — Application Layer Protocol
 
 ---
 
-### 🔹 4. Network Reconnaissance (Phase 2 - Kali Attack)
+## 🔹 4. Network Reconnaissance Detection (Kali Linux Attack)
 
-- Performed Nmap scan from Kali to Windows
-- Data Source: Windows Firewall Logs
+### Scenario
+Performed Nmap-based port scanning from Kali Linux against the Windows target.
 
-**Detection Logic:**
+### Data Source
+- Windows Firewall Logs
+
+### Detection Logic
 - High volume of connection attempts
-- Multiple destination ports targeted from a single source IP
+- Multiple destination ports targeted
+- Source IP correlation
+- Port scan behavior analysis
+
+### MITRE ATT&CK
+- T1046 — Network Service Scanning
 
 ---
 
-## 🚨 Alerting
+# 🚨 Alerting
 
 Alerts were configured in Splunk using:
 
-- Scheduled searches (every 5 minutes)
+- Scheduled searches
 - Threshold-based triggering
-- Throttling to reduce alert noise
+- 5-minute execution intervals
+- Alert throttling to reduce duplicate notifications
 
 ---
 
-## 📊 Dashboards
+# 📊 Dashboards
 
-Dashboards were created for:
+Custom Splunk dashboards were created for:
 
-- Authentication monitoring (brute force detection)
-- Endpoint activity monitoring (process execution)
-- Network monitoring (connection tracking and anomaly detection)
-- External attacker identification (Kali source IP detection)
+- Authentication monitoring
+- Failed login analysis
+- Process execution monitoring
+- PowerShell activity monitoring
+- Outbound network monitoring
+- External attacker identification
+- Port scan visualization
 
----
-
-## 🧠 MITRE ATT&CK Mapping
-
-| Attack | Technique |
-|------|----------|
-| Brute Force | T1110 |
-| PowerShell Execution | T1059.001 |
-| Network Reconnaissance | T1046 |
+Dashboard exports are available in the `reports/` directory.
 
 ---
 
-## 📁 Project Structure
-```
+# 📁 Project Structure
+
+```text
 mini-soc-splunk-lab/
 ├── architecture/
 ├── phase-1-single-host-simulation/
@@ -134,26 +186,50 @@ mini-soc-splunk-lab/
 ├── detections/
 ├── configs/
 ├── reports/
-└── references/
+├── references/
+└── README.md
 ```
 
 ---
 
-## 💼 Key Skills Demonstrated
+# 🧠 MITRE ATT&CK Coverage
 
-- SIEM implementation and configuration
-- Log ingestion and normalization
-- SPL (Search Processing Language)
-- Detection engineering
-- Alert configuration and tuning
-- Security monitoring and analysis
-- Multi-machine SOC architecture design
+| Detection | Technique ID | Technique |
+|---|---|---|
+| Brute Force Detection | T1110 | Brute Force |
+| PowerShell Execution Detection | T1059.001 | PowerShell |
+| Suspicious Command Usage | T1033 | System Owner/User Discovery |
+| Outbound Network Monitoring | T1071 | Application Layer Protocol |
+| Network Reconnaissance Detection | T1046 | Network Service Scanning |
+
+Detailed ATT&CK mappings are available in:
+
+```text
+references/mitre-attack-mapping.md
+```
 
 ---
 
-## 📌 Conclusion
+# 📌 Key Learning Outcomes
 
-This project demonstrates the ability to design and implement a functional SOC lab, simulate realistic attack scenarios, and build effective detection and monitoring mechanisms using Splunk.
+This project provided hands-on experience in:
+
+- Building a functional SOC lab environment
+- Configuring centralized log collection
+- Developing custom SPL detections
+- Simulating realistic attack scenarios
+- Creating actionable alerts and dashboards
+- Investigating endpoint and network activity
+- Mapping detections to MITRE ATT&CK techniques
 
 ---
 
+# 📷 Screenshots and Reports
+
+Dashboard screenshots and exported reports are included throughout the repository and within the `reports/` directory respectively.
+
+---
+
+# 📌 Conclusion
+
+This project demonstrates the implementation of a functional SOC lab capable of ingesting logs, detecting suspicious activity, generating alerts, and visualizing security events using Splunk SIEM across both host-based and network-based attack scenarios.
